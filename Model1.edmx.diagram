@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="a58f0c65e9de4564bf44e453c7fbff3a" Name="Diagram1">
+        <EntityTypeShape EntityType="Model.Customer" Width="1.5" PointX="0.75" PointY="1.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.Demand" Width="1.5" PointX="3" PointY="4.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.Item" Width="1.5" PointX="6" PointY="4.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.MeasureUnite" Width="1.5" PointX="3.75" PointY="2.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.Supplier" Width="1.5" PointX="6" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.Supply" Width="1.5" PointX="8.25" PointY="4.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.sysdiagram" Width="1.5" PointX="0.75" PointY="8.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.Warhouse" Width="1.5" PointX="0.75" PointY="5" IsExpanded="true" />
+        <AssociationConnector Association="Model.FK_Demand_Customer" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.FK_Demand_Item" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.FK_Demand_Warhouse" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.FK__Item__WarhouseID__5535A963" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.FK_Item_MeasureUnite" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.FK_Supply_Item" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.FK_Supply_Supplier" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.FK_Supply_Warhouse" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>
