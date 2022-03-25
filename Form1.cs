@@ -166,5 +166,11 @@ namespace Corp
             SupplierForm SForm = new SupplierForm();
             SForm.ShowDialog();
         }
+
+        private void btnSupply_Click(object sender, EventArgs e)
+        {
+            SupplyForm supplyForm = new SupplyForm();
+            supplyForm.ShowDialog();
+        }
     }
 }

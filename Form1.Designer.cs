@@ -385,6 +385,7 @@
             this.btnSupply.TabIndex = 21;
             this.btnSupply.Text = "Supply";
             this.btnSupply.UseVisualStyleBackColor = false;
+            this.btnSupply.Click += new System.EventHandler(this.btnSupply_Click);
             // 
             // btnTransfer
             // 
