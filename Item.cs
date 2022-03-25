@@ -17,8 +17,8 @@ namespace Corp
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Item()
         {
-            this.Demands = new HashSet<Demand>();
-            this.Supplies = new HashSet<Supply>();
+            this.DemandItems = new HashSet<DemandItem>();
+            this.SupplyItems = new HashSet<SupplyItem>();
         }
     
         public int Code { get; set; }
@@ -28,10 +28,10 @@ namespace Corp
         public Nullable<int> WarhouseID { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Demand> Demands { get; set; }
+        public virtual ICollection<DemandItem> DemandItems { get; set; }
         public virtual Warhouse Warhouse { get; set; }
         public virtual MeasureUnite MeasureUnite { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Supply> Supplies { get; set; }
+        public virtual ICollection<SupplyItem> SupplyItems { get; set; }
     }
 }

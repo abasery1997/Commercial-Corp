@@ -14,17 +14,20 @@ namespace Corp
     
     public partial class Supply
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public Supply()
+        {
+            this.SupplyItems = new HashSet<SupplyItem>();
+        }
+    
         public int ID { get; set; }
-        public int Quantity { get; set; }
-        public System.DateTime DemandDate { get; set; }
-        public int ItemCode { get; set; }
+        public System.DateTime SupplyDate { get; set; }
         public int SupplierID { get; set; }
         public int WarhouseID { get; set; }
-        public System.DateTime ProductionDate { get; set; }
-        public System.DateTime Expiry { get; set; }
     
-        public virtual Item Item { get; set; }
         public virtual Supplier Supplier { get; set; }
         public virtual Warhouse Warhouse { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<SupplyItem> SupplyItems { get; set; }
     }
 }

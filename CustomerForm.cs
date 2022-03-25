@@ -17,7 +17,7 @@ namespace Corp
             InitializeComponent();
         }
 
-        Commercial_CorpEntities ent = new Commercial_CorpEntities();
+        Commercial_CorpEntities1 ent = new Commercial_CorpEntities1();
         private void CustomerForm_Load(object sender, EventArgs e)
         {
             var customers = ent.Customers.Select(customer => customer);

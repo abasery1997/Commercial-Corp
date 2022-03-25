@@ -12,7 +12,7 @@ namespace Corp
 {
     public partial class Form1 : Form
     {
-        Commercial_CorpEntities ent = new Commercial_CorpEntities();
+        Commercial_CorpEntities1 ent = new Commercial_CorpEntities1();
         public Form1()
         {
             InitializeComponent();

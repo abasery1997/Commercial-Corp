@@ -14,15 +14,20 @@ namespace Corp
     
     public partial class Demand
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public Demand()
+        {
+            this.DemandItems = new HashSet<DemandItem>();
+        }
+    
         public int ID { get; set; }
-        public int Quantity { get; set; }
         public System.DateTime DemandDate { get; set; }
-        public int ItemCode { get; set; }
         public int CustomerID { get; set; }
         public int WarhouseID { get; set; }
     
         public virtual Customer Customer { get; set; }
-        public virtual Item Item { get; set; }
         public virtual Warhouse Warhouse { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<DemandItem> DemandItems { get; set; }
     }
 }

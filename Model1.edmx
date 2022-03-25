@@ -20,14 +20,20 @@
         <EntityType Name="Demand">
           <Key>
             <PropertyRef Name="ID" />
-            <PropertyRef Name="ItemCode" />
           </Key>
           <Property Name="ID" Type="int" Nullable="false" />
-          <Property Name="Quantity" Type="int" Nullable="false" />
           <Property Name="DemandDate" Type="date" Nullable="false" />
-          <Property Name="ItemCode" Type="int" Nullable="false" />
           <Property Name="CustomerID" Type="int" Nullable="false" />
           <Property Name="WarhouseID" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="DemandItem">
+          <Key>
+            <PropertyRef Name="DemandID" />
+            <PropertyRef Name="ItemCode" />
+          </Key>
+          <Property Name="DemandID" Type="int" Nullable="false" />
+          <Property Name="ItemCode" Type="int" Nullable="false" />
+          <Property Name="Quantity" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="Item">
           <Key>
@@ -61,15 +67,21 @@
         <EntityType Name="Supply">
           <Key>
             <PropertyRef Name="ID" />
-            <PropertyRef Name="ItemCode" />
           </Key>
           <Property Name="ID" Type="int" Nullable="false" />
-          <Property Name="Quantity" Type="int" Nullable="false" />
-          <Property Name="DemandDate" Type="date" Nullable="false" />
-          <Property Name="ItemCode" Type="int" Nullable="false" />
+          <Property Name="SupplyDate" Type="date" Nullable="false" />
           <Property Name="SupplierID" Type="int" Nullable="false" />
           <Property Name="WarhouseID" Type="int" Nullable="false" />
-          <Property Name="ProductionDate" Type="date" Nullable="false" />
+        </EntityType>
+        <EntityType Name="SupplyItem">
+          <Key>
+            <PropertyRef Name="SupplyID" />
+            <PropertyRef Name="itemCode" />
+          </Key>
+          <Property Name="SupplyID" Type="int" Nullable="false" />
+          <Property Name="itemCode" Type="int" Nullable="false" />
+          <Property Name="Quantity" Type="int" Nullable="false" />
+          <Property Name="productionDate" Type="date" Nullable="false" />
           <Property Name="Expiry" Type="date" Nullable="false" />
         </EntityType>
         <EntityType Name="sysdiagrams">
@@ -114,18 +126,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_Demand_Item">
-          <End Role="Item" Type="Self.Item" Multiplicity="1" />
-          <End Role="Demand" Type="Self.Demand" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Item">
-              <PropertyRef Name="Code" />
-            </Principal>
-            <Dependent Role="Demand">
-              <PropertyRef Name="ItemCode" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK_Demand_Warhouse">
           <End Role="Warhouse" Type="Self.Warhouse" Multiplicity="1" />
           <End Role="Demand" Type="Self.Demand" Multiplicity="*" />
@@ -138,6 +138,30 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_DemandItem_Demand">
+          <End Role="Demand" Type="Self.Demand" Multiplicity="1" />
+          <End Role="DemandItem" Type="Self.DemandItem" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Demand">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="DemandItem">
+              <PropertyRef Name="DemandID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_DemandItem_Item">
+          <End Role="Item" Type="Self.Item" Multiplicity="1" />
+          <End Role="DemandItem" Type="Self.DemandItem" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Item">
+              <PropertyRef Name="Code" />
+            </Principal>
+            <Dependent Role="DemandItem">
+              <PropertyRef Name="ItemCode" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_Item_MeasureUnite">
           <End Role="MeasureUnite" Type="Self.MeasureUnite" Multiplicity="1" />
           <End Role="Item" Type="Self.Item" Multiplicity="*" />
@@ -147,18 +171,6 @@
             </Principal>
             <Dependent Role="Item">
               <PropertyRef Name="MeasureID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Supply_Item">
-          <End Role="Item" Type="Self.Item" Multiplicity="1" />
-          <End Role="Supply" Type="Self.Supply" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Item">
-              <PropertyRef Name="Code" />
-            </Principal>
-            <Dependent Role="Supply">
-              <PropertyRef Name="ItemCode" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -186,13 +198,39 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_SupplyItem_Item">
+          <End Role="Item" Type="Self.Item" Multiplicity="1" />
+          <End Role="SupplyItem" Type="Self.SupplyItem" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Item">
+              <PropertyRef Name="Code" />
+            </Principal>
+            <Dependent Role="SupplyItem">
+              <PropertyRef Name="itemCode" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_SupplyItem_Supply">
+          <End Role="Supply" Type="Self.Supply" Multiplicity="1" />
+          <End Role="SupplyItem" Type="Self.SupplyItem" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Supply">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="SupplyItem">
+              <PropertyRef Name="SupplyID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <EntityContainer Name="ModelStoreContainer">
           <EntitySet Name="Customer" EntityType="Self.Customer" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Demand" EntityType="Self.Demand" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="DemandItem" EntityType="Self.DemandItem" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Item" EntityType="Self.Item" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="MeasureUnite" EntityType="Self.MeasureUnite" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Supplier" EntityType="Self.Supplier" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Supply" EntityType="Self.Supply" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="SupplyItem" EntityType="Self.SupplyItem" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Warhouse" EntityType="Self.Warhouse" Schema="dbo" store:Type="Tables" />
           <AssociationSet Name="FK__Item__WarhouseID__5535A963" Association="Self.FK__Item__WarhouseID__5535A963">
@@ -203,21 +241,21 @@
             <End Role="Customer" EntitySet="Customer" />
             <End Role="Demand" EntitySet="Demand" />
           </AssociationSet>
-          <AssociationSet Name="FK_Demand_Item" Association="Self.FK_Demand_Item">
-            <End Role="Item" EntitySet="Item" />
-            <End Role="Demand" EntitySet="Demand" />
-          </AssociationSet>
           <AssociationSet Name="FK_Demand_Warhouse" Association="Self.FK_Demand_Warhouse">
             <End Role="Warhouse" EntitySet="Warhouse" />
             <End Role="Demand" EntitySet="Demand" />
           </AssociationSet>
+          <AssociationSet Name="FK_DemandItem_Demand" Association="Self.FK_DemandItem_Demand">
+            <End Role="Demand" EntitySet="Demand" />
+            <End Role="DemandItem" EntitySet="DemandItem" />
+          </AssociationSet>
+          <AssociationSet Name="FK_DemandItem_Item" Association="Self.FK_DemandItem_Item">
+            <End Role="Item" EntitySet="Item" />
+            <End Role="DemandItem" EntitySet="DemandItem" />
+          </AssociationSet>
           <AssociationSet Name="FK_Item_MeasureUnite" Association="Self.FK_Item_MeasureUnite">
             <End Role="MeasureUnite" EntitySet="MeasureUnite" />
             <End Role="Item" EntitySet="Item" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Supply_Item" Association="Self.FK_Supply_Item">
-            <End Role="Item" EntitySet="Item" />
-            <End Role="Supply" EntitySet="Supply" />
           </AssociationSet>
           <AssociationSet Name="FK_Supply_Supplier" Association="Self.FK_Supply_Supplier">
             <End Role="Supplier" EntitySet="Supplier" />
@@ -226,6 +264,14 @@
           <AssociationSet Name="FK_Supply_Warhouse" Association="Self.FK_Supply_Warhouse">
             <End Role="Warhouse" EntitySet="Warhouse" />
             <End Role="Supply" EntitySet="Supply" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SupplyItem_Item" Association="Self.FK_SupplyItem_Item">
+            <End Role="Item" EntitySet="Item" />
+            <End Role="SupplyItem" EntitySet="SupplyItem" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SupplyItem_Supply" Association="Self.FK_SupplyItem_Supply">
+            <End Role="Supply" EntitySet="Supply" />
+            <End Role="SupplyItem" EntitySet="SupplyItem" />
           </AssociationSet>
         </EntityContainer>
       </Schema>
@@ -249,17 +295,25 @@
         <EntityType Name="Demand">
           <Key>
             <PropertyRef Name="ID" />
-            <PropertyRef Name="ItemCode" />
           </Key>
           <Property Name="ID" Type="Int32" Nullable="false" />
-          <Property Name="Quantity" Type="Int32" Nullable="false" />
           <Property Name="DemandDate" Type="DateTime" Nullable="false" Precision="0" />
-          <Property Name="ItemCode" Type="Int32" Nullable="false" />
           <Property Name="CustomerID" Type="Int32" Nullable="false" />
           <Property Name="WarhouseID" Type="Int32" Nullable="false" />
           <NavigationProperty Name="Customer" Relationship="Self.FK_Demand_Customer" FromRole="Demand" ToRole="Customer" />
-          <NavigationProperty Name="Item" Relationship="Self.FK_Demand_Item" FromRole="Demand" ToRole="Item" />
           <NavigationProperty Name="Warhouse" Relationship="Self.FK_Demand_Warhouse" FromRole="Demand" ToRole="Warhouse" />
+          <NavigationProperty Name="DemandItems" Relationship="Self.FK_DemandItem_Demand" FromRole="Demand" ToRole="DemandItem" />
+        </EntityType>
+        <EntityType Name="DemandItem">
+          <Key>
+            <PropertyRef Name="DemandID" />
+            <PropertyRef Name="ItemCode" />
+          </Key>
+          <Property Name="DemandID" Type="Int32" Nullable="false" />
+          <Property Name="ItemCode" Type="Int32" Nullable="false" />
+          <Property Name="Quantity" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Demand" Relationship="Self.FK_DemandItem_Demand" FromRole="DemandItem" ToRole="Demand" />
+          <NavigationProperty Name="Item" Relationship="Self.FK_DemandItem_Item" FromRole="DemandItem" ToRole="Item" />
         </EntityType>
         <EntityType Name="Item">
           <Key>
@@ -270,10 +324,10 @@
           <Property Name="Amount" Type="Int32" Nullable="false" />
           <Property Name="MeasureID" Type="Int32" Nullable="false" />
           <Property Name="WarhouseID" Type="Int32" />
-          <NavigationProperty Name="Demands" Relationship="Self.FK_Demand_Item" FromRole="Item" ToRole="Demand" />
+          <NavigationProperty Name="DemandItems" Relationship="Self.FK_DemandItem_Item" FromRole="Item" ToRole="DemandItem" />
           <NavigationProperty Name="Warhouse" Relationship="Self.FK__Item__WarhouseID__5535A963" FromRole="Item" ToRole="Warhouse" />
           <NavigationProperty Name="MeasureUnite" Relationship="Self.FK_Item_MeasureUnite" FromRole="Item" ToRole="MeasureUnite" />
-          <NavigationProperty Name="Supplies" Relationship="Self.FK_Supply_Item" FromRole="Item" ToRole="Supply" />
+          <NavigationProperty Name="SupplyItems" Relationship="Self.FK_SupplyItem_Item" FromRole="Item" ToRole="SupplyItem" />
         </EntityType>
         <EntityType Name="MeasureUnite">
           <Key>
@@ -299,19 +353,27 @@
         <EntityType Name="Supply">
           <Key>
             <PropertyRef Name="ID" />
-            <PropertyRef Name="ItemCode" />
           </Key>
           <Property Name="ID" Type="Int32" Nullable="false" />
-          <Property Name="Quantity" Type="Int32" Nullable="false" />
-          <Property Name="DemandDate" Type="DateTime" Nullable="false" Precision="0" />
-          <Property Name="ItemCode" Type="Int32" Nullable="false" />
+          <Property Name="SupplyDate" Type="DateTime" Nullable="false" Precision="0" />
           <Property Name="SupplierID" Type="Int32" Nullable="false" />
           <Property Name="WarhouseID" Type="Int32" Nullable="false" />
-          <Property Name="ProductionDate" Type="DateTime" Nullable="false" Precision="0" />
-          <Property Name="Expiry" Type="DateTime" Nullable="false" Precision="0" />
-          <NavigationProperty Name="Item" Relationship="Self.FK_Supply_Item" FromRole="Supply" ToRole="Item" />
           <NavigationProperty Name="Supplier" Relationship="Self.FK_Supply_Supplier" FromRole="Supply" ToRole="Supplier" />
           <NavigationProperty Name="Warhouse" Relationship="Self.FK_Supply_Warhouse" FromRole="Supply" ToRole="Warhouse" />
+          <NavigationProperty Name="SupplyItems" Relationship="Self.FK_SupplyItem_Supply" FromRole="Supply" ToRole="SupplyItem" />
+        </EntityType>
+        <EntityType Name="SupplyItem">
+          <Key>
+            <PropertyRef Name="SupplyID" />
+            <PropertyRef Name="itemCode" />
+          </Key>
+          <Property Name="SupplyID" Type="Int32" Nullable="false" />
+          <Property Name="itemCode" Type="Int32" Nullable="false" />
+          <Property Name="Quantity" Type="Int32" Nullable="false" />
+          <Property Name="productionDate" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="Expiry" Type="DateTime" Nullable="false" Precision="0" />
+          <NavigationProperty Name="Item" Relationship="Self.FK_SupplyItem_Item" FromRole="SupplyItem" ToRole="Item" />
+          <NavigationProperty Name="Supply" Relationship="Self.FK_SupplyItem_Supply" FromRole="SupplyItem" ToRole="Supply" />
         </EntityType>
         <EntityType Name="sysdiagram">
           <Key>
@@ -346,18 +408,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_Demand_Item">
-          <End Role="Item" Type="Self.Item" Multiplicity="1" />
-          <End Role="Demand" Type="Self.Demand" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Item">
-              <PropertyRef Name="Code" />
-            </Principal>
-            <Dependent Role="Demand">
-              <PropertyRef Name="ItemCode" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK_Demand_Warhouse">
           <End Role="Warhouse" Type="Self.Warhouse" Multiplicity="1" />
           <End Role="Demand" Type="Self.Demand" Multiplicity="*" />
@@ -367,6 +417,30 @@
             </Principal>
             <Dependent Role="Demand">
               <PropertyRef Name="WarhouseID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_DemandItem_Demand">
+          <End Role="Demand" Type="Self.Demand" Multiplicity="1" />
+          <End Role="DemandItem" Type="Self.DemandItem" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Demand">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="DemandItem">
+              <PropertyRef Name="DemandID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_DemandItem_Item">
+          <End Role="Item" Type="Self.Item" Multiplicity="1" />
+          <End Role="DemandItem" Type="Self.DemandItem" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Item">
+              <PropertyRef Name="Code" />
+            </Principal>
+            <Dependent Role="DemandItem">
+              <PropertyRef Name="ItemCode" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -394,15 +468,15 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_Supply_Item">
+        <Association Name="FK_SupplyItem_Item">
           <End Role="Item" Type="Self.Item" Multiplicity="1" />
-          <End Role="Supply" Type="Self.Supply" Multiplicity="*" />
+          <End Role="SupplyItem" Type="Self.SupplyItem" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Item">
               <PropertyRef Name="Code" />
             </Principal>
-            <Dependent Role="Supply">
-              <PropertyRef Name="ItemCode" />
+            <Dependent Role="SupplyItem">
+              <PropertyRef Name="itemCode" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -430,26 +504,44 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityContainer Name="Commercial_CorpEntities" annotation:LazyLoadingEnabled="true">
+        <Association Name="FK_SupplyItem_Supply">
+          <End Role="Supply" Type="Self.Supply" Multiplicity="1" />
+          <End Role="SupplyItem" Type="Self.SupplyItem" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Supply">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="SupplyItem">
+              <PropertyRef Name="SupplyID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="Commercial_CorpEntities1" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="Customers" EntityType="Self.Customer" />
           <EntitySet Name="Demands" EntityType="Self.Demand" />
+          <EntitySet Name="DemandItems" EntityType="Self.DemandItem" />
           <EntitySet Name="Items" EntityType="Self.Item" />
           <EntitySet Name="MeasureUnites" EntityType="Self.MeasureUnite" />
           <EntitySet Name="Suppliers" EntityType="Self.Supplier" />
           <EntitySet Name="Supplies" EntityType="Self.Supply" />
+          <EntitySet Name="SupplyItems" EntityType="Self.SupplyItem" />
           <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagram" />
           <EntitySet Name="Warhouses" EntityType="Self.Warhouse" />
           <AssociationSet Name="FK_Demand_Customer" Association="Self.FK_Demand_Customer">
             <End Role="Customer" EntitySet="Customers" />
             <End Role="Demand" EntitySet="Demands" />
           </AssociationSet>
-          <AssociationSet Name="FK_Demand_Item" Association="Self.FK_Demand_Item">
-            <End Role="Item" EntitySet="Items" />
-            <End Role="Demand" EntitySet="Demands" />
-          </AssociationSet>
           <AssociationSet Name="FK_Demand_Warhouse" Association="Self.FK_Demand_Warhouse">
             <End Role="Warhouse" EntitySet="Warhouses" />
             <End Role="Demand" EntitySet="Demands" />
+          </AssociationSet>
+          <AssociationSet Name="FK_DemandItem_Demand" Association="Self.FK_DemandItem_Demand">
+            <End Role="Demand" EntitySet="Demands" />
+            <End Role="DemandItem" EntitySet="DemandItems" />
+          </AssociationSet>
+          <AssociationSet Name="FK_DemandItem_Item" Association="Self.FK_DemandItem_Item">
+            <End Role="Item" EntitySet="Items" />
+            <End Role="DemandItem" EntitySet="DemandItems" />
           </AssociationSet>
           <AssociationSet Name="FK__Item__WarhouseID__5535A963" Association="Self.FK__Item__WarhouseID__5535A963">
             <End Role="Warhouse" EntitySet="Warhouses" />
@@ -459,9 +551,9 @@
             <End Role="MeasureUnite" EntitySet="MeasureUnites" />
             <End Role="Item" EntitySet="Items" />
           </AssociationSet>
-          <AssociationSet Name="FK_Supply_Item" Association="Self.FK_Supply_Item">
+          <AssociationSet Name="FK_SupplyItem_Item" Association="Self.FK_SupplyItem_Item">
             <End Role="Item" EntitySet="Items" />
-            <End Role="Supply" EntitySet="Supplies" />
+            <End Role="SupplyItem" EntitySet="SupplyItems" />
           </AssociationSet>
           <AssociationSet Name="FK_Supply_Supplier" Association="Self.FK_Supply_Supplier">
             <End Role="Supplier" EntitySet="Suppliers" />
@@ -471,13 +563,17 @@
             <End Role="Warhouse" EntitySet="Warhouses" />
             <End Role="Supply" EntitySet="Supplies" />
           </AssociationSet>
+          <AssociationSet Name="FK_SupplyItem_Supply" Association="Self.FK_SupplyItem_Supply">
+            <End Role="Supply" EntitySet="Supplies" />
+            <End Role="SupplyItem" EntitySet="SupplyItems" />
+          </AssociationSet>
         </EntityContainer>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-        <EntityContainerMapping StorageEntityContainer="ModelStoreContainer" CdmEntityContainer="Commercial_CorpEntities">
+        <EntityContainerMapping StorageEntityContainer="ModelStoreContainer" CdmEntityContainer="Commercial_CorpEntities1">
           <EntitySetMapping Name="Customers">
             <EntityTypeMapping TypeName="Model.Customer">
               <MappingFragment StoreEntitySet="Customer">
@@ -495,11 +591,18 @@
             <EntityTypeMapping TypeName="Model.Demand">
               <MappingFragment StoreEntitySet="Demand">
                 <ScalarProperty Name="ID" ColumnName="ID" />
-                <ScalarProperty Name="Quantity" ColumnName="Quantity" />
                 <ScalarProperty Name="DemandDate" ColumnName="DemandDate" />
-                <ScalarProperty Name="ItemCode" ColumnName="ItemCode" />
                 <ScalarProperty Name="CustomerID" ColumnName="CustomerID" />
                 <ScalarProperty Name="WarhouseID" ColumnName="WarhouseID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="DemandItems">
+            <EntityTypeMapping TypeName="Model.DemandItem">
+              <MappingFragment StoreEntitySet="DemandItem">
+                <ScalarProperty Name="DemandID" ColumnName="DemandID" />
+                <ScalarProperty Name="ItemCode" ColumnName="ItemCode" />
+                <ScalarProperty Name="Quantity" ColumnName="Quantity" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -539,12 +642,19 @@
             <EntityTypeMapping TypeName="Model.Supply">
               <MappingFragment StoreEntitySet="Supply">
                 <ScalarProperty Name="ID" ColumnName="ID" />
-                <ScalarProperty Name="Quantity" ColumnName="Quantity" />
-                <ScalarProperty Name="DemandDate" ColumnName="DemandDate" />
-                <ScalarProperty Name="ItemCode" ColumnName="ItemCode" />
+                <ScalarProperty Name="SupplyDate" ColumnName="SupplyDate" />
                 <ScalarProperty Name="SupplierID" ColumnName="SupplierID" />
                 <ScalarProperty Name="WarhouseID" ColumnName="WarhouseID" />
-                <ScalarProperty Name="ProductionDate" ColumnName="ProductionDate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SupplyItems">
+            <EntityTypeMapping TypeName="Model.SupplyItem">
+              <MappingFragment StoreEntitySet="SupplyItem">
+                <ScalarProperty Name="SupplyID" ColumnName="SupplyID" />
+                <ScalarProperty Name="itemCode" ColumnName="itemCode" />
+                <ScalarProperty Name="Quantity" ColumnName="Quantity" />
+                <ScalarProperty Name="productionDate" ColumnName="productionDate" />
                 <ScalarProperty Name="Expiry" ColumnName="Expiry" />
               </MappingFragment>
             </EntityTypeMapping>

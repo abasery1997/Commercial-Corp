@@ -13,10 +13,10 @@ namespace Corp
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
     
-    public partial class Commercial_CorpEntities : DbContext
+    public partial class Commercial_CorpEntities1 : DbContext
     {
-        public Commercial_CorpEntities()
-            : base("name=Commercial_CorpEntities")
+        public Commercial_CorpEntities1()
+            : base("name=Commercial_CorpEntities1")
         {
         }
     
@@ -27,10 +27,12 @@ namespace Corp
     
         public virtual DbSet<Customer> Customers { get; set; }
         public virtual DbSet<Demand> Demands { get; set; }
+        public virtual DbSet<DemandItem> DemandItems { get; set; }
         public virtual DbSet<Item> Items { get; set; }
         public virtual DbSet<MeasureUnite> MeasureUnites { get; set; }
         public virtual DbSet<Supplier> Suppliers { get; set; }
         public virtual DbSet<Supply> Supplies { get; set; }
+        public virtual DbSet<SupplyItem> SupplyItems { get; set; }
         public virtual DbSet<sysdiagram> sysdiagrams { get; set; }
         public virtual DbSet<Warhouse> Warhouses { get; set; }
     }

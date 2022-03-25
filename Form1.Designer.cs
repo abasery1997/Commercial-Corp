@@ -85,7 +85,7 @@
             // 
             // btnUpdateWar
             // 
-            this.btnUpdateWar.Location = new System.Drawing.Point(194, 291);
+            this.btnUpdateWar.Location = new System.Drawing.Point(196, 261);
             this.btnUpdateWar.Name = "btnUpdateWar";
             this.btnUpdateWar.Size = new System.Drawing.Size(98, 43);
             this.btnUpdateWar.TabIndex = 19;
@@ -95,7 +95,7 @@
             // 
             // btnInsertWar
             // 
-            this.btnInsertWar.Location = new System.Drawing.Point(69, 291);
+            this.btnInsertWar.Location = new System.Drawing.Point(71, 261);
             this.btnInsertWar.Name = "btnInsertWar";
             this.btnInsertWar.Size = new System.Drawing.Size(98, 43);
             this.btnInsertWar.TabIndex = 18;
@@ -105,21 +105,21 @@
             // 
             // txtWarManager
             // 
-            this.txtWarManager.Location = new System.Drawing.Point(262, 219);
+            this.txtWarManager.Location = new System.Drawing.Point(267, 174);
             this.txtWarManager.Name = "txtWarManager";
             this.txtWarManager.Size = new System.Drawing.Size(100, 20);
             this.txtWarManager.TabIndex = 17;
             // 
             // txtWarName
             // 
-            this.txtWarName.Location = new System.Drawing.Point(131, 219);
+            this.txtWarName.Location = new System.Drawing.Point(136, 174);
             this.txtWarName.Name = "txtWarName";
             this.txtWarName.Size = new System.Drawing.Size(100, 20);
             this.txtWarName.TabIndex = 16;
             // 
             // txtWarID
             // 
-            this.txtWarID.Location = new System.Drawing.Point(13, 219);
+            this.txtWarID.Location = new System.Drawing.Point(18, 174);
             this.txtWarID.Name = "txtWarID";
             this.txtWarID.Size = new System.Drawing.Size(100, 20);
             this.txtWarID.TabIndex = 15;
@@ -127,7 +127,7 @@
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(294, 187);
+            this.label4.Location = new System.Drawing.Point(299, 142);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(49, 13);
             this.label4.TabIndex = 14;
@@ -136,7 +136,7 @@
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(167, 187);
+            this.label5.Location = new System.Drawing.Point(172, 142);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(35, 13);
             this.label5.TabIndex = 13;
@@ -145,7 +145,7 @@
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(53, 187);
+            this.label6.Location = new System.Drawing.Point(58, 142);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(18, 13);
             this.label6.TabIndex = 12;
