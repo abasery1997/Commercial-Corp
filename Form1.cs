@@ -71,7 +71,7 @@ namespace Corp
             foreach (var item in items)
             {
                 var unite = ent.MeasureUnites.Single(a => a.ID == item.MeasureID);
-                lboxItems.Items.Add($"{item.Code}  {item.Name}  {unite.Unite}   {warhouse.Name}");
+                lboxItems.Items.Add($"{item.Code}  {item.Name}  {unite.Unite}  {item.Amount}   {warhouse.Name}");
             }
         }
 
@@ -117,7 +117,7 @@ namespace Corp
                 item.Amount = 0;
                 ent.Items.Add(item);
                 ent.SaveChanges();
-                lboxItems.Items.Add($"{item.Code}  {item.Name}  {unite.Unite}   {warhouse.Name}");
+                lboxItems.Items.Add($"{item.Code}  {item.Name}  {unite.Unite} {item.Amount}  {warhouse.Name}");
                 txtItemCode.Text = txtItemName.Text = cboxUnites.Text = String.Empty;
                 MessageBox.Show("Item " + item.Name + " added Succesfully");
 
@@ -148,7 +148,7 @@ namespace Corp
             foreach (var item in items)
             {
                 var unite = ent.MeasureUnites.Single(a => a.ID == item.MeasureID);
-                lboxItems.Items.Add($"{item.Code}  {item.Name}  {unite.Unite}   {warhouse.Name}");
+                lboxItems.Items.Add($"{item.Code}  {item.Name}  {unite.Unite} {item.Amount}  {warhouse.Name}");
             }
 
 
@@ -173,9 +173,6 @@ namespace Corp
             supplyForm.ShowDialog();
         }
 
-        private void groupBox1_Enter(object sender, EventArgs e)
-        {
-
-        }
+        
     }
 }
