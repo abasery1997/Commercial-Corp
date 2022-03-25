@@ -120,6 +120,12 @@
     <Compile Include="SupplyItem.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
+    <Compile Include="SupplyItemForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="SupplyItemForm.Designer.cs">
+      <DependentUpon>SupplyItemForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="sysdiagram.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
@@ -146,6 +152,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="SupplyForm.resx">
       <DependentUpon>SupplyForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SupplyItemForm.resx">
+      <DependentUpon>SupplyItemForm.cs</DependentUpon>
     </EmbeddedResource>
     <EntityDeploy Include="Model1.edmx">
       <Generator>EntityModelCodeGenerator</Generator>

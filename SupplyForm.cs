@@ -12,11 +12,15 @@ namespace Corp
 {
     public partial class SupplyForm : Form
     {
+        public static int WarhouseID;
+        public static int SupplierID;
+        public static int ItemCOunt;
+        public static int Iteration;
         public SupplyForm()
         {
             InitializeComponent();
         }
-        Commercial_CorpEntities1 ent= new Commercial_CorpEntities1();
+        Commercial_CorpEntities1 ent = new Commercial_CorpEntities1();
         private void SupplyForm_Load(object sender, EventArgs e)
         {
             var warhouses = ent.Warhouses.Select(warhouse => warhouse);
@@ -34,28 +38,32 @@ namespace Corp
             {
                 cboxSuppliers.Items.Add(supp);
             }
-           
+
         }
         private void btnInsertSupply_Click(object sender, EventArgs e)
         {
             Supply supply = new Supply();
             supply.ID = Int32.Parse(txtSupplyID.Text);
-            supply.WarhouseID = Int32.Parse(cboxWars.Text);
-            supply.SupplierID = Int32.Parse(cboxSuppliers.Text);
-            supply.SupplyDate =DateTime.Parse(DatePickerSupplayDate.Text);
-            
+            WarhouseID = supply.WarhouseID = Int32.Parse(cboxWars.Text);
+            SupplierID = supply.SupplierID = Int32.Parse(cboxSuppliers.Text);
+            supply.SupplyDate = DateTime.Parse(DatePickerSupplayDate.Text);
+
             ent.Supplies.Add(supply);
             ent.SaveChanges();
             cboxSupplyID.Items.Add(supply.ID);
+            int count = ItemCOunt= Int32.Parse(txtItemsNum.Text);
+            for (int i = 0; i < count; i++)
+            {
+                Iteration = i;
+                SupplyItemForm supplyItemForm = new SupplyItemForm();
+                supplyItemForm.ShowDialog();
+            }
             txtSupplyID.Text = cboxSuppliers.Text = DatePickerSupplayDate.Text = String.Empty;
             MessageBox.Show($"Supply {supply.ID} added Successfully ");
         }
 
-        private void groupBox1_Enter(object sender, EventArgs e)
-        {
 
-        }
 
-        
+
     }
 }

@@ -172,5 +172,10 @@ namespace Corp
             SupplyForm supplyForm = new SupplyForm();
             supplyForm.ShowDialog();
         }
+
+        private void groupBox1_Enter(object sender, EventArgs e)
+        {
+
+        }
     }
 }
