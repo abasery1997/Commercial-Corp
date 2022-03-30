@@ -12,7 +12,7 @@ namespace Corp
 {
     public partial class Form1 : Form
     {
-        Commercial_CorpEntities1 ent = new Commercial_CorpEntities1();
+       public Commercial_CorpEntities1 ent = new Commercial_CorpEntities1();
         public Form1()
         {
             InitializeComponent();
@@ -149,6 +149,7 @@ namespace Corp
             {
                 var unite = ent.MeasureUnites.Single(a => a.ID == item.MeasureID);
                 lboxItems.Items.Add($"{item.Code}  {item.Name}  {unite.Unite} {item.Amount}  {warhouse.Name}");
+                Console.WriteLine(item.Amount);
             }
 
 
@@ -169,7 +170,7 @@ namespace Corp
 
         private void btnSupply_Click(object sender, EventArgs e)
         {
-            SupplyForm supplyForm = new SupplyForm();
+            SupplyForm supplyForm = new SupplyForm(ent);
             supplyForm.ShowDialog();
         }
 

@@ -12,11 +12,13 @@ namespace Corp
 {
     public partial class SupplyItemForm : Form
     {
-        public SupplyItemForm()
+    Commercial_CorpEntities1 ent;
+
+        public SupplyItemForm(Commercial_CorpEntities1 _ent)
         {
             InitializeComponent();
+            ent = _ent;
         }
-        Commercial_CorpEntities1 ent = new Commercial_CorpEntities1();
 
         private void SupplyItemForm_Load(object sender, EventArgs e)
         {
@@ -24,7 +26,10 @@ namespace Corp
             int SupplierID = SupplyForm.SupplierID;
             int ItemCOunt = SupplyForm.ItemCOunt;
             int Iteration = SupplyForm.Iteration;
-            var warhouse = ent.Warhouses.Single(a => a.ID == WarhouseID);
+
+            labelItemCounter.Text = $"Item {Iteration} of {ItemCOunt}";
+
+            var warhouse =  ent.Warhouses.Single(a => a.ID == WarhouseID);
             var supplier = ent.Suppliers.Single(a => a.ID == SupplierID);
             LabelWarhouseName.Text = warhouse.Name;
             labelSupplierName.Text = supplier.Name;

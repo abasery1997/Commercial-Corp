@@ -41,6 +41,7 @@
             this.datePickerExpiry = new System.Windows.Forms.DateTimePicker();
             this.btnInsertSuppItem = new System.Windows.Forms.Button();
             this.cboxItems = new System.Windows.Forms.ComboBox();
+            this.labelItemCounter = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // label1
@@ -103,9 +104,9 @@
             this.LabelWarhouseName.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.LabelWarhouseName.Location = new System.Drawing.Point(120, 25);
             this.LabelWarhouseName.Name = "LabelWarhouseName";
-            this.LabelWarhouseName.Size = new System.Drawing.Size(57, 20);
+            this.LabelWarhouseName.Size = new System.Drawing.Size(135, 20);
             this.LabelWarhouseName.TabIndex = 6;
-            this.LabelWarhouseName.Text = "label7";
+            this.LabelWarhouseName.Text = "warhouse name";
             // 
             // labelSupplierName
             // 
@@ -113,9 +114,9 @@
             this.labelSupplierName.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.labelSupplierName.Location = new System.Drawing.Point(558, 17);
             this.labelSupplierName.Name = "labelSupplierName";
-            this.labelSupplierName.Size = new System.Drawing.Size(66, 24);
+            this.labelSupplierName.Size = new System.Drawing.Size(143, 24);
             this.labelSupplierName.TabIndex = 7;
-            this.labelSupplierName.Text = "label8";
+            this.labelSupplierName.Text = "supplier name";
             // 
             // txtSuppItemCount
             // 
@@ -140,7 +141,7 @@
             // 
             // btnInsertSuppItem
             // 
-            this.btnInsertSuppItem.Location = new System.Drawing.Point(312, 163);
+            this.btnInsertSuppItem.Location = new System.Drawing.Point(562, 161);
             this.btnInsertSuppItem.Name = "btnInsertSuppItem";
             this.btnInsertSuppItem.Size = new System.Drawing.Size(129, 32);
             this.btnInsertSuppItem.TabIndex = 12;
@@ -156,11 +157,21 @@
             this.cboxItems.Size = new System.Drawing.Size(189, 21);
             this.cboxItems.TabIndex = 27;
             // 
+            // labelItemCounter
+            // 
+            this.labelItemCounter.AutoSize = true;
+            this.labelItemCounter.Location = new System.Drawing.Point(89, 171);
+            this.labelItemCounter.Name = "labelItemCounter";
+            this.labelItemCounter.Size = new System.Drawing.Size(43, 13);
+            this.labelItemCounter.TabIndex = 28;
+            this.labelItemCounter.Text = "counter";
+            // 
             // SupplyItemForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(798, 220);
+            this.Controls.Add(this.labelItemCounter);
             this.Controls.Add(this.cboxItems);
             this.Controls.Add(this.btnInsertSuppItem);
             this.Controls.Add(this.datePickerExpiry);
@@ -197,5 +208,6 @@
         private System.Windows.Forms.DateTimePicker datePickerExpiry;
         private System.Windows.Forms.Button btnInsertSuppItem;
         private System.Windows.Forms.ComboBox cboxItems;
+        private System.Windows.Forms.Label labelItemCounter;
     }
 }

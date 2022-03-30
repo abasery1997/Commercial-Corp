@@ -17,11 +17,12 @@ namespace Corp
         public static int ItemCOunt;
         public static int Iteration;
         public static int SupplyID;
-        public SupplyForm()
+        Commercial_CorpEntities1 ent;
+        public SupplyForm(Commercial_CorpEntities1 _ent)
         {
             InitializeComponent();
+            ent = _ent;
         }
-        Commercial_CorpEntities1 ent = new Commercial_CorpEntities1();
         private void SupplyForm_Load(object sender, EventArgs e)
         {
             var warhouses = ent.Warhouses.Select(warhouse => warhouse);
@@ -52,11 +53,11 @@ namespace Corp
             ent.Supplies.Add(supply);
             ent.SaveChanges();
             cboxSupplyID.Items.Add(supply.ID);
-            int count = ItemCOunt= Int32.Parse(txtItemsNum.Text);
+            int count = ItemCOunt = (Int32)txtItemNumber.Value;
             for (int i = 1; i <= count; i++)
             {
                 Iteration = i;
-                SupplyItemForm supplyItemForm = new SupplyItemForm();
+                SupplyItemForm supplyItemForm = new SupplyItemForm(ent);
                 supplyItemForm.ShowDialog();
             }
             txtSupplyID.Text = cboxSuppliers.Text = DatePickerSupplayDate.Text = String.Empty;

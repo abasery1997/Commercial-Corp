@@ -34,16 +34,17 @@
             this.cboxSupplyID = new System.Windows.Forms.ComboBox();
             this.label1 = new System.Windows.Forms.Label();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.label5 = new System.Windows.Forms.Label();
+            this.label4 = new System.Windows.Forms.Label();
+            this.DatePickerSupplayDate = new System.Windows.Forms.DateTimePicker();
+            this.cboxSuppliers = new System.Windows.Forms.ComboBox();
+            this.label3 = new System.Windows.Forms.Label();
             this.btnInsertSupply = new System.Windows.Forms.Button();
             this.txtSupplyID = new System.Windows.Forms.TextBox();
             this.label6 = new System.Windows.Forms.Label();
-            this.cboxSuppliers = new System.Windows.Forms.ComboBox();
-            this.label3 = new System.Windows.Forms.Label();
-            this.DatePickerSupplayDate = new System.Windows.Forms.DateTimePicker();
-            this.label4 = new System.Windows.Forms.Label();
-            this.txtItemsNum = new System.Windows.Forms.TextBox();
-            this.label5 = new System.Windows.Forms.Label();
+            this.txtItemNumber = new System.Windows.Forms.NumericUpDown();
             this.groupBox1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.txtItemNumber)).BeginInit();
             this.SuspendLayout();
             // 
             // listBoxSupplayItems
@@ -90,7 +91,7 @@
             // 
             // groupBox1
             // 
-            this.groupBox1.Controls.Add(this.txtItemsNum);
+            this.groupBox1.Controls.Add(this.txtItemNumber);
             this.groupBox1.Controls.Add(this.label5);
             this.groupBox1.Controls.Add(this.label4);
             this.groupBox1.Controls.Add(this.DatePickerSupplayDate);
@@ -105,6 +106,48 @@
             this.groupBox1.TabIndex = 27;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Supply Data";
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(52, 215);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(78, 13);
+            this.label5.TabIndex = 31;
+            this.label5.Text = "Items Number :";
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(12, 160);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(71, 13);
+            this.label4.TabIndex = 30;
+            this.label4.Text = "Supply Date :";
+            // 
+            // DatePickerSupplayDate
+            // 
+            this.DatePickerSupplayDate.Location = new System.Drawing.Point(99, 160);
+            this.DatePickerSupplayDate.Name = "DatePickerSupplayDate";
+            this.DatePickerSupplayDate.Size = new System.Drawing.Size(181, 20);
+            this.DatePickerSupplayDate.TabIndex = 29;
+            // 
+            // cboxSuppliers
+            // 
+            this.cboxSuppliers.FormattingEnabled = true;
+            this.cboxSuppliers.Location = new System.Drawing.Point(114, 105);
+            this.cboxSuppliers.Name = "cboxSuppliers";
+            this.cboxSuppliers.Size = new System.Drawing.Size(139, 21);
+            this.cboxSuppliers.TabIndex = 28;
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(12, 113);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(51, 13);
+            this.label3.TabIndex = 27;
+            this.label3.Text = "Supplier :";
             // 
             // btnInsertSupply
             // 
@@ -132,54 +175,12 @@
             this.label6.TabIndex = 12;
             this.label6.Text = "ID :";
             // 
-            // cboxSuppliers
+            // txtItemNumber
             // 
-            this.cboxSuppliers.FormattingEnabled = true;
-            this.cboxSuppliers.Location = new System.Drawing.Point(114, 105);
-            this.cboxSuppliers.Name = "cboxSuppliers";
-            this.cboxSuppliers.Size = new System.Drawing.Size(139, 21);
-            this.cboxSuppliers.TabIndex = 28;
-            // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(12, 113);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(51, 13);
-            this.label3.TabIndex = 27;
-            this.label3.Text = "Supplier :";
-            // 
-            // DatePickerSupplayDate
-            // 
-            this.DatePickerSupplayDate.Location = new System.Drawing.Point(99, 160);
-            this.DatePickerSupplayDate.Name = "DatePickerSupplayDate";
-            this.DatePickerSupplayDate.Size = new System.Drawing.Size(181, 20);
-            this.DatePickerSupplayDate.TabIndex = 29;
-            // 
-            // label4
-            // 
-            this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(12, 160);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(71, 13);
-            this.label4.TabIndex = 30;
-            this.label4.Text = "Supply Date :";
-            // 
-            // txtItemsNum
-            // 
-            this.txtItemsNum.Location = new System.Drawing.Point(144, 212);
-            this.txtItemsNum.Name = "txtItemsNum";
-            this.txtItemsNum.Size = new System.Drawing.Size(64, 20);
-            this.txtItemsNum.TabIndex = 32;
-            // 
-            // label5
-            // 
-            this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(52, 215);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(78, 13);
-            this.label5.TabIndex = 31;
-            this.label5.Text = "Items Number :";
+            this.txtItemNumber.Location = new System.Drawing.Point(136, 215);
+            this.txtItemNumber.Name = "txtItemNumber";
+            this.txtItemNumber.Size = new System.Drawing.Size(120, 20);
+            this.txtItemNumber.TabIndex = 33;
             // 
             // SupplyForm
             // 
@@ -197,6 +198,7 @@
             this.Load += new System.EventHandler(this.SupplyForm_Load);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.txtItemNumber)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -217,7 +219,7 @@
         private System.Windows.Forms.Button btnInsertSupply;
         private System.Windows.Forms.TextBox txtSupplyID;
         private System.Windows.Forms.Label label6;
-        private System.Windows.Forms.TextBox txtItemsNum;
         private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.NumericUpDown txtItemNumber;
     }
 }
